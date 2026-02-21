@@ -17,7 +17,7 @@
             --stone-gray: #546e7a;
             --font-serif: 'Shippori Mincho', serif;
             --font-sans: 'Noto Sans JP', sans-serif;
-            --section-padding: 240px;
+            --section-padding: 200px;
         }
 
         * {
@@ -72,9 +72,8 @@
             height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
             padding-top: 80px;
+            position: relative;
         }
 
         .hero-visual {
@@ -84,20 +83,24 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+            background-color: #ffffff; 
         }
 
         .hero-visual img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(10%) brightness(102%);
-            opacity: 0.35;
+            opacity: 0.25; 
         }
 
         .hero-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start; 
             gap: 30px;
         }
 
@@ -113,26 +116,33 @@
 
         .hero-copy {
             font-family: var(--font-serif);
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(2rem, 4vw, 3.2rem);
             font-weight: 500;
             letter-spacing: 0.25em;
             line-height: 1.7;
             color: var(--text-main);
         }
 
-        /* --- Concept Section --- */
-        .concept-text {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
+        /* --- Message Section --- */
+        .message-section {
+            background-color: var(--bg-color);
+            margin-top: 100px; 
+            padding-top: 120px; 
+            padding-bottom: var(--section-padding);
         }
 
-        .concept-title {
+        .message-content {
+            max-width: 700px;
+            margin: 0 auto;
             font-family: var(--font-serif);
-            font-size: 1.8rem;
-            margin-bottom: 80px;
-            color: var(--stone-gray);
-            letter-spacing: 0.2em;
+            font-size: 1.1rem;
+            line-height: 2.6;
+            letter-spacing: 0.1em;
+            color: var(--text-main);
+        }
+
+        .message-content p {
+            margin-bottom: 2.5em;
         }
 
         /* --- Profile Section --- */
@@ -143,9 +153,10 @@
 
         .profile-grid {
             display: grid;
-            grid-template-columns: 0.8fr 1.2fr; /* 左側の画像エリアを少し狭めてバランスを調整 */
+            grid-template-columns: 240px 1fr; 
             gap: 80px;
-            align-items: stretch; /* 左右の高さを揃える */
+            /* 画像がテキストの高さに引っ張られないよう、中央揃えに変更しました */
+            align-items: center; 
         }
 
         .profile-image-container {
@@ -155,9 +166,10 @@
 
         .profile-image-container img {
             width: 100%;
-            height: 100%; /* テキストの高さに合わせる */
-            object-fit: cover; /* 比率を保ったまま枠内に収める */
-            object-position: center top; /* 顔が切れにくいように上部を優先 */
+            /* 縦横比を 3:4 に固定し、PCとスマホで同じ比率になるようにしました */
+            aspect-ratio: 3 / 4;
+            object-fit: cover; 
+            object-position: center top; 
             display: block;
             box-shadow: 15px 15px 0px #f7f8f9;
             border-radius: 2px;
@@ -165,10 +177,10 @@
 
         .profile-caption {
             border-left: 1px solid var(--accent-color);
-            padding: 0 0 0 60px; /* 上下のパディングをなくし、画像と開始位置を完全に一致させる */
+            padding: 0 0 0 60px; 
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* テキストを上下いっぱいに広げる補助 */
+            justify-content: center;
         }
 
         .profile-caption h3 {
@@ -179,9 +191,18 @@
             line-height: 1.2;
         }
 
+        .profile-desc {
+            font-family: var(--font-serif);
+            margin-bottom: 20px;
+            color: var(--stone-gray);
+            font-size: 1.05rem;
+            letter-spacing: 0.05em;
+        }
+
         .profile-stats {
             list-style: none;
-            margin-top: auto; /* 経歴リストをなるべく下部に寄せて画像と高さを合わせる */
+            margin-top: 30px; 
+            font-family: var(--font-serif); 
         }
 
         .profile-stats li {
@@ -190,9 +211,46 @@
             color: var(--stone-gray);
             border-bottom: 1px solid #f6f6f6;
             padding-bottom: 8px;
+            letter-spacing: 0.05em;
         }
 
-        /* --- Service Section --- */
+        /* SNS Buttons */
+        .sns-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .sns-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            color: var(--stone-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .sns-btn:hover {
+            background-color: var(--text-main);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .sns-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* --- Service & Form Section --- */
+        .service-section {
+            padding: var(--section-padding) 0;
+        }
+
         .service-card {
             background: white;
             padding: 100px 60px;
@@ -211,30 +269,126 @@
             opacity: 0.4;
         }
 
-        .price-tag {
+        .section-title {
             font-family: var(--font-serif);
-            font-size: 1.6rem;
-            margin: 35px 0;
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            letter-spacing: 0.2em;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 60px auto 0;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--stone-gray);
             letter-spacing: 0.1em;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 20px 55px;
-            background: var(--text-main);
-            color: white;
-            text-decoration: none;
-            letter-spacing: 0.2em;
-            font-size: 0.9rem;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            margin-top: 20px;
-            cursor: pointer;
+        .required-mark {
+            color: #d97777;
+            font-size: 0.8rem;
+            margin-left: 5px;
         }
 
-        .cta-button:hover {
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid var(--accent-color);
+            background-color: #fcfbf9;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            color: var(--text-main);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--stone-gray);
+            background-color: #ffffff;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 180px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 5px 0;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .radio-item input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 1px solid var(--stone-gray);
+            border-radius: 50%;
+            margin-right: 12px;
+            position: relative;
+            cursor: pointer;
+            background-color: transparent;
+            transition: all 0.2s ease;
+        }
+
+        .radio-item input[type="radio"]:checked {
+            border-color: var(--text-main);
+        }
+
+        .radio-item input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--text-main);
+            border-radius: 50%;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background: var(--text-main);
+            color: white;
+            border: none;
+            letter-spacing: 0.2em;
+            font-size: 1rem;
+            font-family: var(--font-serif);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin-top: 40px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .submit-btn:hover {
             background: var(--stone-gray);
             letter-spacing: 0.3em;
-            transform: translateY(-5px);
         }
 
         /* --- Footer --- */
@@ -259,12 +413,29 @@
         /* Responsive */
         @media (max-width: 992px) {
             :root { --section-padding: 120px; }
+            
+            .message-section {
+                margin-top: 80px; 
+                padding-top: 80px; 
+            }
+
+            .pc-br { display: none; }
+
+            .hero-visual img { object-position: 85% center; }
+            
             .profile-grid { grid-template-columns: 1fr; gap: 40px; }
-            .profile-image-container img { height: 400px; } /* スマホ時は固定高 */
-            .profile-caption { padding: 30px 0 0 30px; border-left: 2px solid var(--accent-color); }
+            .profile-image-container { max-width: 180px; margin: 0 auto; } 
+            
+            .profile-caption { padding: 0; border-left: none; text-align: center; }
+            .profile-stats li { text-align: left; }
+            .sns-buttons { justify-content: center; } 
+            
             .container { padding: 0 30px; }
             nav { padding: 20px 30px; }
+            .hero-content { padding: 0 30px; align-items: flex-start; }
             .hero-copy { font-size: 1.8rem; }
+            
+            .service-card { padding: 60px 30px; }
         }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease; }
@@ -285,7 +456,7 @@
     <main>
         <section class="hero">
             <div class="hero-visual">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2000" alt="abstract nature">
+                <img src="hero.jpg" alt="hero background">
             </div>
             <div class="hero-content">
                 <p class="hero-name reveal">むなかた智子 Official Website</p>
@@ -293,16 +464,42 @@
             </div>
         </section>
 
-        <section class="container">
-            <div class="concept-text">
-                <h2 class="concept-title reveal">境界のない、対話の場所</h2>
-                <div class="concept-description reveal">
-                    <p>そこは、湘南の海と山が溶け合う場所。<br>
-                    古い日本家屋のような安らぎと、現代的な透明感が共存しています。</p>
-                    <p>大きな窓から差し込む光のように、<br>
-                    あなたのこれまでの歴史に、新しい光をあてていく。</p>
-                    <p>自分自身を感じ、本領を発揮するための、<br>静謐な時間を提供します。</p>
-                </div>
+        <section class="message-section container">
+            <div class="message-content reveal">
+                <p>
+                    かっこよく生きたい。<br class="pc-br">
+                    やらない後悔はしたくない。
+                </p>
+                <p>
+                    自分の生き様を時々眺めて、<br class="pc-br">
+                    「いいじゃん、悪くないよ」<br class="pc-br">
+                    そんな風に思える人生。
+                </p>
+                <p>
+                    そして、<br class="pc-br">
+                    「この先がもっと楽しみなんだ」<br class="pc-br">
+                    そんな感覚で人生を歩みたい。
+                </p>
+                <p>
+                    マイコーチがいる日常や、<br class="pc-br">
+                    コーチングの理論やメソッドを学んだことは、<br class="pc-br">
+                    私の人生を変えた。<br class="pc-br">
+                    仕事も、夫婦で過ごす時間も、親子の関係も、<br class="pc-br">
+                    趣味も、生活も、本当の仲間もできたら、<br class="pc-br">
+                    人生そのものの面白みが飛躍的にあがった。
+                </p>
+                <p>
+                    やりたいことを見つけたり、リアルな夢ができたりして、<br class="pc-br">
+                    その実現に挑戦する日々は、コーチングと出会ったから始まり、<br class="pc-br">
+                    コーチングがあるから諦めずに今がある。
+                </p>
+                <p>
+                    私にとってのコーチングとはそういうもので、<br class="pc-br">
+                    こんな生き方に共感してもらえたなら、<br class="pc-br">
+                    そんな生き方をしてみたいと思ってもらえたら、<br class="pc-br">
+                    私もコーチとしてあなたに貢献できることが、<br class="pc-br">
+                    私の生きがいです。
+                </p>
             </div>
         </section>
 
@@ -315,7 +512,7 @@
                     <div class="profile-caption reveal">
                         <div>
                             <h3>Profile</h3>
-                            <p style="margin-bottom: 20px; color: #555;">対話を通じて、人生のキャリアを再構築する。</p>
+                            <p class="profile-desc">対話を通じて、人生のキャリアを再構築する。</p>
                         </div>
                         <ul class="profile-stats">
                             <li>対話型アート鑑賞 参加者延べ1,000人</li>
@@ -325,25 +522,78 @@
                             <li>在英中、400名規模のコミュニティを設立</li>
                             <li>ロンドン日本語学校にて日本美術と文化を教授</li>
                         </ul>
+                        
+                        <div class="sns-buttons">
+                            <a href="https://www.facebook.com/tomoko.muna" target="_blank" rel="noopener noreferrer" class="sns-btn" aria-label="Facebook">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.instagram.com/munakatatomoko" target="_blank" rel="noopener noreferrer" class="sns-btn" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="container">
+        <section class="service-section container">
             <div class="service-card reveal">
                 <div class="stone-icon"></div>
-                <h2 class="concept-title" style="margin-bottom: 35px;">体験セッション</h2>
-                <p>あなたがどんな時も、自分自身の本領を発揮できるように。<br>
-                そのきっかけとなる「石」を手渡す対話を。</p>
-                
-                <p class="price-tag">90分 8,800円</p>
-                
-                <p style="font-size: 0.85rem; color: #999; margin-bottom: 35px; letter-spacing: 0.1em;">
-                    ※サービス詳細は、体験セッションの中で丁寧にご説明差し上げます。
+                <h2 class="section-title">Contact</h2>
+                <p style="margin-bottom: 40px; font-size: 0.95rem;">
+                    体験セッションのお申し込みや、その他ご相談はこちらから承ります。<br>
+                    必要事項をご入力のうえ、送信してください。
                 </p>
                 
-                <a href="https://forms.gle/Ggqsg5gGdJssRyQi9" target="_blank" rel="noopener noreferrer" class="cta-button">Reserve Session</a>
+                <form action="https://ssgform.com/s/U8PEVJXnrUwH" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label class="form-label" for="name">お名前 <span class="required-mark">*</span></label>
+                        <input type="text" id="name" name="お名前" class="form-control" required placeholder="例：山田 太郎">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">メールアドレス <span class="required-mark">*</span></label>
+                        <input type="email" id="email" name="メールアドレス" class="form-control" required placeholder="例：info@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">お問合せ種別</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="お問合せ種別" value="コーチング体験セッション" checked>
+                                コーチング体験セッション
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="お問合せ種別" value="コーチング継続セッション">
+                                コーチング継続セッション
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="お問合せ種別" value="セミナー・講座について">
+                                セミナー・講座について
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="お問合せ種別" value="法人・団体様のご相談">
+                                法人・団体様のご相談
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="お問合せ種別" value="その他ご相談">
+                                その他ご相談
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="message">お問合せ内容</label>
+                        <textarea id="message" name="お問合せ内容" class="form-control" placeholder="ご質問やご相談内容をご記入ください。"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">送信する</button>
+                </form>
+
             </div>
         </section>
     </main>
@@ -355,14 +605,12 @@
     </footer>
 
     <script>
-        // Loader
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             loader.style.opacity = '0';
             setTimeout(() => loader.style.display = 'none', 1200);
         });
 
-        // Scroll Reveal
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -374,12 +622,11 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Parallax Effect
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const heroImg = document.querySelector('.hero-visual img');
             if(heroImg) {
-                heroImg.style.transform = `translateY(${scrolled * 0.35}px)`;
+                heroImg.style.transform = `translateY(${scrolled * 0.2}px)`;
             }
         });
     </script>
